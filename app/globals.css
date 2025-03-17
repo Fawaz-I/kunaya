@@ -5,6 +5,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.rotate-315 {
+  transform: rotate(-45deg);
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
