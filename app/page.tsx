@@ -5,6 +5,7 @@ import TigerNutFacts from '@/components/tiger-nut-facts';
 import RootedInCulture from '@/components/rooted-in-culture';
 import OurProducts from '@/components/our-products';
 import OurImpact from '@/components/our-impact';
+import FullWidthImage from '@/components/full-width-image';
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <RootedInCulture />
       <OurProducts />
       <OurImpact />
+      <FullWidthImage />
 
       {/* Other sections will go here */}
     </main>

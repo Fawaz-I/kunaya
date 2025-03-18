@@ -1,15 +1,24 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-const FullWidthContainer = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
-  <div 
-    className={`w-full overflow-hidden ${className}`} 
-    style={{ marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', width: '100vw' }}
+const FullWidthContainer = ({
+  children,
+  className = '',
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => (
+  <div
+    className={`w-full overflow-hidden ${className}`}
+    style={{
+      marginLeft: 'calc(-50vw + 50%)',
+      marginRight: 'calc(-50vw + 50%)',
+      width: '100vw',
+    }}
   >
     {children}
   </div>
 );
-
 
 type ImpactCardProps = {
   icon: string;
@@ -23,7 +32,7 @@ const ImpactCard = ({ icon, iconAlt, title, description }: ImpactCardProps) => {
     <div className='bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow duration-300'>
       <div className='flex items-start gap-3 mb-2'>
         <Image src={icon} alt={iconAlt} width={40} height={40} />
-        <h3 className="text-kunaya-green text-xl font-semibold font-mochiy">
+        <h3 className='text-kunaya-green text-xl font-semibold font-mochiy'>
           {title}
         </h3>
       </div>
@@ -34,15 +43,18 @@ const ImpactCard = ({ icon, iconAlt, title, description }: ImpactCardProps) => {
 
 const PatternRow = ({ count = 25 }: { count?: number }) => {
   return (
-    <div className="flex" style={{ width: '100%', maxWidth: '100vw', overflow: 'hidden' }}>
+    <div
+      className='flex'
+      style={{ width: '100%', maxWidth: '100vw', overflow: 'hidden' }}
+    >
       {[...Array(count)].map((_, i) => (
         <Image
           key={i}
-          src="/pattern.png"
-          alt="Decorative pattern"
+          src='/pattern.png'
+          alt='Decorative pattern'
           width={100}
           height={100}
-          className="flex-shrink-0 inline-block"
+          className='flex-shrink-0 inline-block'
           style={{ marginLeft: i > 0 ? '-15px' : '0' }}
         />
       ))}
@@ -52,12 +64,12 @@ const PatternRow = ({ count = 25 }: { count?: number }) => {
 
 export default function OurImpact() {
   return (
-    <section className='py-16 relative overflow-hidden bg-white'>      
+    <section className='py-16 relative overflow-hidden bg-white'>
       {/* Green gradient background overlay for bottom of section */}
-      <div className="absolute bottom-0 left-0 w-full h-28 bg-gradient-to-t from-kunaya-green/15 to-transparent z-0"></div>
+      <div className='absolute bottom-0 left-0 w-full h-28 bg-gradient-to-t from-kunaya-green/15 to-transparent z-0'></div>
       {/* Heading */}
       <div className='container mx-auto px-4 mb-12'>
-        <h2 className="text-kunaya-green text-4xl md:text-5xl font-bold text-center font-mochiy">
+        <h2 className='text-kunaya-green text-4xl md:text-5xl font-bold text-center font-mochiy'>
           Our Impact
         </h2>
       </div>
@@ -66,14 +78,14 @@ export default function OurImpact() {
       <div className='container mx-auto px-4 grid md:grid-cols-2 gap-10 items-center mb-16 relative z-10'>
         {/* Left Column - Cards */}
         <div className='space-y-12 flex flex-col justify-center'>
-          <ImpactCard 
+          <ImpactCard
             icon='/community.png'
             iconAlt='Community Support Icon'
             title='Community Support'
             description='Supporting dozens of small-scale farmers across West Africa'
           />
-          
-          <ImpactCard 
+
+          <ImpactCard
             icon='/leaf2.png'
             iconAlt='Sustainability Icon'
             title='Sustainability'
@@ -82,8 +94,8 @@ export default function OurImpact() {
 
           {/* Learn More Button */}
           <div className='flex justify-center mt-12'>
-            <Link 
-              href='/impact' 
+            <Link
+              href='/impact'
               className='bg-kunaya-orange hover:bg-opacity-90 text-white font-semibold py-3 px-8 rounded-full transition duration-300 shadow-md hover:shadow-lg'
             >
               Learn More
@@ -104,10 +116,10 @@ export default function OurImpact() {
           </div>
         </div>
       </div>
-      
+
       {/* Bottom Pattern Border */}
-      <FullWidthContainer className="mt-16 relative">
-        <div className="w-full flex justify-center relative z-10">
+      <FullWidthContainer className='mt-16 relative'>
+        <div className='w-full flex justify-center relative z-10'>
           <PatternRow />
         </div>
       </FullWidthContainer>

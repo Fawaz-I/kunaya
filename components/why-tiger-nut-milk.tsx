@@ -7,56 +7,56 @@ const benefits = [
   "Rich in fiber for better digestion.",
   "Packed with healthy fats for sustained energy.",
   "Low in sugar, but naturally sweet.",
-  "High in essential vitamins and minerals, like magnesium, potassium, and iron"
+  "High in essential vitamins and minerals, like magnesium, potassium, and iron."
 ];
 
 const WhyTigerNutMilk = () => {
   return (
-    <section className="py-16 md:py-24 px-4 overflow-hidden relative bg-white max-w-screen-2xl mx-auto">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-16 px-4 bg-[#FDF8F0] border-y border-gray-200">
+      <div className="container mx-auto">
         {/* Heading */}
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-mochiy text-kunaya-green mb-12 md:mb-16 lg:mx-auto text-center">
+        <h2 className="text-4xl md:text-5xl font-mochiy text-kunaya-green mb-8 text-center">
           Why Tiger Nut Milk?
         </h2>
         
-        <div className="flex flex-col md:flex-row gap-10 lg:gap-20 items-center justify-between">
-          {/* Image column */}
-          <div className="w-full lg:w-1/2 max-w-xl">
+        <div className="flex flex-col md:flex-row gap-8 items-center justify-between">
+          {/* Left side - Image */}
+          <div className="w-full md:w-1/2">
             <Image
               src="/whytigerimage.png"
-              alt="Tiger nuts"
+              alt="Tiger nuts, coconut and tiger nut milk"
               width={600}
-              height={600}
-              className="rounded-lg w-full h-auto object-cover shadow-sm"
+              height={450}
+              className="rounded-lg w-full h-auto object-cover"
             />
           </div>
           
-          {/* Benefits column */}
-          <div className="w-full lg:w-1/2 space-y-6">
-            <ul className="space-y-3 lg:space-y-4">
-              {benefits.map((benefit, index) => (
-                <li key={index} className="flex items-start">
-                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-kunaya-green flex items-center justify-center mr-4 mt-1">
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </span>
-                  <span className="text-base md:text-lg font-clash">{benefit}</span>
-                </li>
-              ))}
-            </ul>
+          {/* Right side - Benefits list and tiger illustration */}
+          <div className="w-full md:w-1/2 flex flex-col md:flex-row justify-between items-center">
+            {/* Benefits list */}
+            <div className="mb-8 md:mb-0 md:pr-6">
+              <ul className="space-y-4">
+                {benefits.map((benefit, index) => (
+                  <li key={index} className="flex items-start">
+                    <span className="text-kunaya-green font-bold mr-2 text-xl">•</span>
+                    <span className="text-gray-700">{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
             
-            {/* Tiger image with caption */}
-            <div className="flex flex-col items-center mt-12">
-              <div className="relative w-32 h-32 md:w-40 md:h-40">
+            {/* Tiger illustration */}
+            <div className="flex flex-col items-center">
+              <div className="relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden" style={{ backgroundColor: '#4CAF50' }}>
                 <Image
                   src="/tiger.png"
                   alt="Tiger"
-                  fill
+                  width={180}
+                  height={180}
                   className="object-contain"
                 />
               </div>
-              <p className="text-lg font-clash text-kunaya-green font-medium mt-3 italic">
+              <p className="text-lg font-clash text-kunaya-green font-medium mt-3">
                 The purr-fect plant-based milk!
               </p>
             </div>
