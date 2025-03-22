@@ -20,8 +20,8 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: "Kunaya - Tiger Nut Milk | Pure Plant-Based Power",
-  description: "Discover Kunaya's premium Tiger Nut Milk - a naturally dairy-free, nut-free, and lactose-free alternative rich in nutrients and rooted in West African tradition.",
+  title: "Kunaya | Pure Plant Based Power",
+  description: "Experience the authentic taste of West African tiger nut milk - naturally dairy-free, nutrient-rich, and deliciously refreshing.",
   keywords: ["tiger nut milk", "plant-based milk", "dairy-free", "West African", "Kunaya", "healthy drinks"],
   authors: [{ name: "Kunaya" }],
   creator: "Kunaya",
@@ -34,26 +34,26 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: "Kunaya - Tiger Nut Milk | Pure Plant-Based Power",
-    description: "Discover Kunaya's premium Tiger Nut Milk - a naturally dairy-free, nut-free, and lactose-free alternative rich in nutrients and rooted in West African tradition.",
+    title: "Kunaya | Pure Plant Based Power",
+    description: "Experience the authentic taste of West African tiger nut milk - naturally dairy-free, nutrient-rich, and deliciously refreshing.",
     url: 'https://kunaya.vercel.app',
     siteName: 'Kunaya',
     locale: 'en_US',
     type: 'website',
     images: [
       {
-        url: '/og-image.jpg', // Make sure to create this image in the public folder
-        width: 1200,
-        height: 630,
-        alt: 'Kunaya Tiger Nut Milk',
+        url: '/footer_logo.png',
+        width: 150,
+        height: 150,
+        alt: 'Kunaya Logo',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Kunaya - Tiger Nut Milk | Pure Plant-Based Power",
-    description: "Discover Kunaya's premium Tiger Nut Milk - naturally dairy-free and nutrient-rich.",
-    images: ['/og-image.jpg'],
+    title: "Kunaya | Pure Plant Based Power",
+    description: "Experience the authentic taste of West African tiger nut milk - naturally dairy-free and nutrient-rich.",
+    images: ['/footer_logo.png'],
   },
   robots: {
     index: true,
