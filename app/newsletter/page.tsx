@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import NewsletterSignup from '@/components/newsletter-signup';
 
@@ -41,7 +40,7 @@ export default function NewsletterPage() {
           <div className="animate-fade-in-up">
             <div className="bg-[#143620]/80 backdrop-blur-md p-8 rounded-2xl shadow-xl text-white border border-kunaya-green/20">
               <h2 className="font-mochiy text-kunaya-green text-2xl mb-6 text-center">
-                What You'll Receive
+                What You&apos;ll Receive
               </h2>
               
               <ul className="space-y-5 mb-8 text-lg">
