@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kunaya - Tiger Nut Milk
+
+A modern, responsive website showcasing Kunaya's premium Tiger Nut Milk products. Built with Next.js, React, and TailwindCSS.
+
+![Kunaya Website Screenshot](/public/og-image.jpg)
+
+## Features
+
+- Fully responsive design optimized for all devices
+- Modern UI with smooth animations and transitions
+- SEO optimized with metadata, sitemap, and robots.txt
+- Performance optimized with Next.js App Router
+- Accessibility focused design
+
+## Tech Stack
+
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: TailwindCSS
+- **Deployment**: Vercel
+- **Performance**: Optimized images, fonts, and bundle size
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18.17 or later
+- npm or yarn
+
+### Installation
+
+1. Clone the repository
+   ```bash
+   git clone https://github.com/yourusername/kunaya.git
+   cd kunaya
+   ```
+
+2. Install dependencies
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. Run the development server
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Deployment
+
+### Build for Production
 
 ```bash
-npm run dev
+npm run build
 # or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Analyze Bundle Size
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run analyze
+# or
+yarn analyze
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Deploy to Vercel
 
-## Learn More
+The easiest way to deploy this Next.js app is to use [Vercel](https://vercel.com).
 
-To learn more about Next.js, take a look at the following resources:
+1. Push your code to a Git repository (GitHub, GitLab, BitBucket)
+2. Import the project to Vercel
+3. Vercel will detect Next.js and set up the build configuration automatically
+4. Your site will be deployed to a global CDN with HTTPS enabled
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Alternatively, you can deploy directly from the command line:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm install -g vercel
+vercel
+```
 
-## Deploy on Vercel
+## Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+/
+├── app/               # Next.js App Router files
+├── components/        # React components
+├── lib/              # Utility functions and shared code
+├── public/           # Static assets
+└── styles/           # Global styles
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Performance Optimizations
+
+This project includes several performance optimizations:
+
+- Image optimization with next/image
+- Font optimization with next/font
+- Bundle analysis for code splitting
+- Server-side rendering for improved SEO
+- Optimized Tailwind CSS configuration
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

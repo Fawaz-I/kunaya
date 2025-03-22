@@ -6,7 +6,7 @@ export default function BenefitsSection() {
     <section className="bg-[#F0FDF4] py-16 px-4">
       <div className="container mx-auto">
         <h2 className="font-mochiy text-kunaya-green text-4xl text-center mb-14">
-          Nature's Gift to Your Health
+          Nature&apos;s Gift to Your Health
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 px-4">

@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  /* Optimized config options for production */
   images: {
     remotePatterns: [
       {
@@ -11,6 +11,20 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 60,
+  },
+  poweredByHeader: false,
+  compress: true,
+  reactStrictMode: true,
+  experimental: {
+    optimizeCss: true,
+    optimisticClientCache: true,
+  },
+  logging: {
+    fetches: {
+      fullUrl: process.env.NODE_ENV === 'development',
+    },
   },
 };
 

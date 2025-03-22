@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://kunaya.vercel.app
+
+# Sitemaps
+Sitemap: https://kunaya.vercel.app/sitemap.xml

@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const TigerNutFacts = () => {
   return (
-    <div className="w-full bg-[#F5E6CC] mt-12 lg:mt-20">
+    <div className="w-full bg-[#F5E6CC]">
       {/* Mobile layout */}
       <div className="md:hidden flex flex-col p-8">
         <p className="text-kunaya-green text-2xl font-clash font-semibold leading-relaxed mb-8">
