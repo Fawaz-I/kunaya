@@ -11,14 +11,15 @@ export default function HeroSection() {
           alt='Kunaya milk pack mockup'
           fill
           priority
-          className='object-cover'
+          className='object-cover md:object-center object-[60%_center]'
+          sizes="100vw"
         />
       </div>
       
-      {/* Text content positioned on the left with dark overlay for readability */}
+      {/* Text content positioned based on screen size for optimal visibility */}
       <div className='container mx-auto px-4 h-screen z-10 relative'>
-        <div className='flex h-full items-center'>
-          <div className='max-w-xl bg-black/30 p-8 rounded-xl backdrop-blur-sm animate-fade-in-up'>
+        <div className='flex h-full items-center md:justify-start justify-center'>
+          <div className='max-w-xl md:bg-black/30 bg-black/15 p-8 rounded-xl md:backdrop-blur-sm backdrop-blur-[1px] animate-fade-in-up md:mr-0 md:ml-0 md:mt-0 mt-auto mb-[10vh] md:w-auto w-[95%] md:static absolute md:left-auto left-[2.5%] right-[2.5%]'>
             <h1 className='font-mochiy text-white text-5xl md:text-6xl lg:text-[60px] leading-tight mb-6 animate-slide-in-left [animation-delay:200ms]'>
               Discover
               <br />
