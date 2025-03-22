@@ -105,13 +105,13 @@ export default function OurImpact() {
 
         {/* Right Column - Farmers Illustration */}
         <div className='flex justify-center md:justify-end'>
-          <div className='relative w-full max-w-md'>
+          <div className='relative w-full max-w-xl'>
             <Image
-              src='/farmers.png'
-              alt='African farmers working in fields'
-              width={500}
-              height={500}
-              className='rounded-lg'
+              src='/our_impact.png'
+              alt='Our impact in the community'
+              width={700}
+              height={700}
+              className='rounded-lg shadow-lg'
             />
           </div>
         </div>

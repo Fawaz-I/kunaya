@@ -21,7 +21,7 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: "Kunaya | Pure Plant Based Power",
+  title: "Kunaya | Organic Tiger Nut Milk",
   description: "Experience the authentic taste of West African tiger nut milk - naturally dairy-free, nutrient-rich, and deliciously refreshing.",
   keywords: ["tiger nut milk", "plant-based milk", "dairy-free", "West African", "Kunaya", "healthy drinks"],
   authors: [{ name: "Kunaya" }],
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: "Kunaya | Pure Plant Based Power",
+    title: "Kunaya | Organic Tiger Nut Milk",
     description: "Experience the authentic taste of West African tiger nut milk - naturally dairy-free, nutrient-rich, and deliciously refreshing.",
     url: 'https://kunaya.vercel.app',
     siteName: 'Kunaya',
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Kunaya | Pure Plant Based Power",
+    title: "Kunaya | Organic Tiger Nut Milk",
     description: "Experience the authentic taste of West African tiger nut milk - naturally dairy-free and nutrient-rich.",
     images: ['/footer_logo.png'],
   },
