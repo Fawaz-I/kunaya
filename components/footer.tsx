@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Instagram, Facebook, Twitter } from "lucide-react";
+import NewsletterSignup from "./newsletter-signup";
 
 export default function Footer() {
   return (
@@ -72,11 +73,8 @@ export default function Footer() {
             
             {/* Newsletter signup */}
             <div className="mt-4">
-              <input 
-                type="email" 
-                placeholder="EMAIL ADDRESS" 
-                className="w-full p-2 text-black rounded bg-white"
-              />
+              <h4 className="text-white font-semibold mb-2">Join our newsletter</h4>
+              <NewsletterSignup variant="inline" />
             </div>
             
             {/* Pattern images */}
