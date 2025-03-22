@@ -6,7 +6,7 @@ import { useState, useEffect } from "react"
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
+  const [, setIsMobile] = useState(false)
 
   // Handle screen resize
   useEffect(() => {
@@ -146,7 +146,7 @@ export default function Navbar() {
           <div className="container mx-auto px-4">
             <nav className="mt-8">
               <ul className="flex flex-col space-y-6">
-                {navLinks.map((link, index) => (
+                {navLinks.map((link) => (
                   <li key={link.href} className="border-b border-gray-100 pb-4">
                     <Link 
                       href={link.href} 
