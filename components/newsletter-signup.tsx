@@ -56,7 +56,7 @@ export default function NewsletterSignup({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Your email address"
-              className="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-kunaya-green transition-all"
+              className="w-full px-4 py-3 border border-gray-300 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-kunaya-green transition-all"
               disabled={status === 'loading'}
             />
           </div>
@@ -92,7 +92,7 @@ export default function NewsletterSignup({
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Your email address"
-            className="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-kunaya-green transition-all"
+            className="w-full px-4 py-3 border border-gray-300 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-kunaya-green transition-all"
             disabled={status === 'loading'}
           />
         </div>

@@ -12,6 +12,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@vercel/speed-insights": "^1.2.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -27,6 +28,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@next/bundle-analyzer": "^15.2.2",
+    "@types/mailchimp__mailchimp_marketing": "^3.0.21",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

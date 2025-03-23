@@ -60,13 +60,14 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Follow Us</h3>
             <div className="flex space-x-3">
-              <a href="https://instagram.com" className="text-white hover:opacity-80 transition-opacity" aria-label="Instagram">
+              <a href="https://www.instagram.com/taste.kunaya/" className="text-white hover:opacity-80 transition-opacity" aria-label="Instagram">
                 <Instagram size={20} />
               </a>
-              <a href="https://facebook.com" className="text-white hover:opacity-80 transition-opacity" aria-label="Facebook">
+              {/* Facebook and Twitter pages not available yet */}
+              <a href="#" className="text-white/50 cursor-not-allowed" aria-label="Facebook (coming soon)">
                 <Facebook size={20} />
               </a>
-              <a href="https://twitter.com" className="text-white hover:opacity-80 transition-opacity" aria-label="Twitter">
+              <a href="#" className="text-white/50 cursor-not-allowed" aria-label="Twitter (coming soon)">
                 <Twitter size={20} />
               </a>
             </div>
