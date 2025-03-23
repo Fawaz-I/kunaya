@@ -69,22 +69,6 @@ npm run analyze
 yarn analyze
 ```
 
-### Deploy to Vercel
-
-The easiest way to deploy this Next.js app is to use [Vercel](https://vercel.com).
-
-1. Push your code to a Git repository (GitHub, GitLab, BitBucket)
-2. Import the project to Vercel
-3. Vercel will detect Next.js and set up the build configuration automatically
-4. Your site will be deployed to a global CDN with HTTPS enabled
-
-Alternatively, you can deploy directly from the command line:
-
-```bash
-npm install -g vercel
-vercel
-```
-
 ## Project Structure
 
 ```
