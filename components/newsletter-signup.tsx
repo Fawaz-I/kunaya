@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 interface NewsletterSignupProps {
   className?: string;
@@ -14,6 +15,7 @@ export default function NewsletterSignup({
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,12 +28,23 @@ export default function NewsletterSignup({
 
     setStatus('loading');
     
+    // Execute the invisible reCAPTCHA
+    const token = await recaptchaRef.current?.executeAsync();
+    if (!token) {
+      setStatus('error');
+      setMessage('CAPTCHA verification failed. Please try again.');
+      return;
+    }
+    
     try {
       const response = await fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, recaptchaToken: token }),
       });
+      
+      // Reset the reCAPTCHA for next submission
+      recaptchaRef.current?.reset();
       
       const data = await response.json();
       
@@ -49,6 +62,12 @@ export default function NewsletterSignup({
   if (variant === 'inline') {
     return (
       <div className={`${className} animate-fade-in-up`}>
+        {/* Invisible reCAPTCHA */}
+        <ReCAPTCHA
+          ref={recaptchaRef}
+          size="invisible"
+          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
+        />
         <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
           <div className="flex-grow">
             <input
@@ -84,6 +103,13 @@ export default function NewsletterSignup({
       <p className="text-gray-600 mb-6">
         Stay updated with our latest products, promotions, and tiger nut facts.
       </p>
+      
+      {/* Invisible reCAPTCHA */}
+      <ReCAPTCHA
+        ref={recaptchaRef}
+        size="invisible"
+        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
+      />
       
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>

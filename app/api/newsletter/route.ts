@@ -9,7 +9,7 @@ mailchimp.setConfig({
 
 export async function POST(request: NextRequest) {
   try {
-    const { email } = await request.json();
+    const { email, recaptchaToken } = await request.json();
 
     if (!email || typeof email !== 'string' || !email.includes('@')) {
       return NextResponse.json(
@@ -17,8 +17,51 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+    
+    // Verify reCAPTCHA token if provided
+    if (recaptchaToken && process.env.RECAPTCHA_SECRET_KEY) {
+      try {
+        const recaptchaResponse = await fetch(
+          `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
+          { method: 'POST' }
+        );
+        
+        const recaptchaResult = await recaptchaResponse.json();
+        
+        if (!recaptchaResult.success) {
+          console.error('reCAPTCHA verification failed:', recaptchaResult);
+          return NextResponse.json(
+            { success: false, message: 'CAPTCHA verification failed. Please try again.' },
+            { status: 400 }
+          );
+        }
+      } catch (error) {
+        console.error('Error verifying reCAPTCHA:', error);
+        // Continue with subscription even if reCAPTCHA verification fails in production
+        // to avoid blocking legitimate users if the reCAPTCHA service is down
+        if (process.env.NODE_ENV !== 'production') {
+          return NextResponse.json(
+            { success: false, message: 'Error verifying CAPTCHA.' },
+            { status: 500 }
+          );
+        }
+      }
+    }
 
-    // Check if we have the required environment variables
+    // Check if we have the required environment variables or if we're in test mode
+    const isTestMode = process.env.NEWSLETTER_TEST_MODE === 'true';
+    
+    if (isTestMode) {
+      console.log(`Newsletter signup (TEST MODE): ${email}`);
+      return NextResponse.json(
+        { 
+          success: true, 
+          message: 'Test successful! In production, this would subscribe you to our newsletter.' 
+        },
+        { status: 200 }
+      );
+    }
+    
     if (!process.env.MAILCHIMP_API_KEY || !process.env.MAILCHIMP_LIST_ID || !process.env.MAILCHIMP_SERVER_PREFIX) {
       console.warn('Mailchimp environment variables not set. Falling back to mock implementation.');
       console.log(`Newsletter signup (mock): ${email}`);
