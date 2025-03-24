@@ -5,7 +5,7 @@ export default function NotFound() {
     <div className="flex min-h-[70vh] flex-col items-center justify-center px-4 pt-16 text-center">
       <h1 className="mb-4 text-4xl font-bold">Coming Soon</h1>
       <p className="mb-8 max-w-md text-lg text-muted-foreground">
-        We're working on something special for this page. 
+        We&apos;re working on something special for this page. 
         Check back soon to discover more about our organic tiger nut milk.
       </p>
       <Link
