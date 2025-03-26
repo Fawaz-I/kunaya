@@ -165,7 +165,7 @@ function UnsubscribeContent() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Your email address"
-                    className="w-full px-4 py-3 border border-gray-600 rounded-full bg-white/10 text-white focus:outline-none focus:ring-2 focus:ring-kunaya-green transition-all"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-full bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-kunaya-green transition-all placeholder:text-gray-500"
                     disabled={isSubmitting}
                     required
                   />
