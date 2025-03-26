@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import mailchimp from '@mailchimp/mailchimp_marketing';
+import { rateLimitRequest, getRateLimitResponse } from '@/lib/rate-limit';
 
 // Initialize Mailchimp with your API key
 mailchimp.setConfig({
@@ -9,14 +10,29 @@ mailchimp.setConfig({
 
 export async function POST(request: NextRequest) {
   try {
+    // Apply rate limiting - 5 requests per minute per IP
+    const rateLimitResult = await rateLimitRequest(request, {
+      limit: 5,
+      windowInSeconds: 60,
+      identifier: 'newsletter-subscribe'
+    });
+    
+    if (!rateLimitResult.success) {
+      return getRateLimitResponse(rateLimitResult);
+    }
     const { email, recaptchaToken } = await request.json();
 
-    if (!email || typeof email !== 'string' || !email.includes('@')) {
+    // More robust email validation
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!email || typeof email !== 'string' || !emailRegex.test(email)) {
       return NextResponse.json(
         { success: false, message: 'Invalid email address' },
         { status: 400 }
       );
     }
+    
+    // Sanitize email input to prevent injection attacks
+    const sanitizedEmail = email.trim().toLowerCase();
     
     // Verify reCAPTCHA token if provided
     if (recaptchaToken && process.env.RECAPTCHA_SECRET_KEY) {
@@ -78,7 +94,7 @@ export async function POST(request: NextRequest) {
     try {
       // Add the subscriber to your Mailchimp list
       const response = await mailchimp.lists.addListMember(process.env.MAILCHIMP_LIST_ID, {
-        email_address: email,
+        email_address: sanitizedEmail,
         status: 'subscribed', // Use 'pending' if you want double opt-in
         merge_fields: {
           // You can add additional fields here if needed

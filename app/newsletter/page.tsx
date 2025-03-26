@@ -83,7 +83,7 @@ export default function NewsletterPage() {
               </div>
 
               <p className="text-sm text-gray-300 mt-6 text-center">
-                We respect your privacy. You can unsubscribe at any time.
+                We respect your privacy. You can <Link href="/newsletter/unsubscribe" className="text-kunaya-orange hover:text-kunaya-orange/80 underline transition-colors">unsubscribe</Link> at any time.
               </p>
             </div>
           </div>

@@ -13,8 +13,11 @@ A modern, responsive website showcasing Kunaya's premium Tiger Nut Milk products
   - Smooth fade-in and slide-in effects for enhanced user experience
 - Newsletter system with Mailchimp integration
   - Secure form submission with reCAPTCHA protection
+  - Complete subscription and unsubscribe functionality
+  - Rate limiting to prevent abuse
   - Responsive feedback messages
   - Multiple form variants (default and inline)
+  - Email validation and sanitization
   - Error handling and validation
 - SEO optimized with metadata, sitemap, and robots.txt
 - Performance optimized with Next.js App Router
@@ -29,7 +32,7 @@ A modern, responsive website showcasing Kunaya's premium Tiger Nut Milk products
 - **Performance**: Optimized images, fonts, and bundle size
 - **Animation**: Custom Tailwind keyframes and animation utilities
 - **Email Marketing**: Mailchimp API integration
-- **Security**: Google reCAPTCHA v2 Invisible
+- **Security**: Google reCAPTCHA v2 Invisible, Rate Limiting, Input Validation
 
 ## Getting Started
 
@@ -103,8 +106,11 @@ yarn analyze
 /
 ├── app/               # Next.js App Router files
 │   ├── page.tsx       # Home page
-│   ├── newsletter/    # Newsletter signup page
+│   ├── newsletter/    # Newsletter pages
+│   │   ├── page.tsx   # Newsletter signup page
+│   │   └── unsubscribe/  # Newsletter unsubscribe page
 │   └── api/           # API routes
+│       └── newsletter/   # Newsletter API endpoints
 ├── components/        # React components
 │   ├── hero-section.tsx       # Hero section with animations
 │   ├── benefits-section.tsx   # Product benefits section
@@ -112,6 +118,7 @@ yarn analyze
 │   ├── newsletter-signup.tsx  # Newsletter form
 │   └── ui/                    # Reusable UI components
 ├── lib/              # Utility functions and shared code
+│   └── rate-limit.ts  # Rate limiting implementation
 ├── public/           # Static assets
 └── tailwind.config.ts # Tailwind configuration with custom animations
 ```
@@ -147,16 +154,19 @@ Example usage in components:
 
 ## Newsletter System
 
-The website includes a complete newsletter subscription system:
+The website includes a complete newsletter subscription and unsubscribe system:
 
-- **Mailchimp Integration**: Subscribers are automatically added to a Mailchimp list
-- **reCAPTCHA Protection**: Uses Google reCAPTCHA v2 Invisible to prevent spam submissions
+- **Mailchimp Integration**: Subscribers are automatically added to or removed from a Mailchimp list
+- **reCAPTCHA Protection**: Uses Google reCAPTCHA v2 Invisible to prevent spam submissions for both subscribe and unsubscribe actions
+- **Rate Limiting**: Prevents abuse by limiting requests to 5 per minute per IP address
+- **Email Validation**: Robust regex pattern validation and input sanitization to prevent injection attacks
 - **Form Variants**: 
   - Default: Full-width form with heading and description
   - Inline: Compact form for use in other components
 - **Responsive Feedback**: Visual feedback for success/error states
 - **Error Handling**: Proper validation and error handling for all edge cases
 - **Test Mode**: Development mode for testing without sending actual API requests
+- **Unsubscribe Flow**: Dedicated page and API endpoint for users to unsubscribe from the newsletter
 
 Environment variables required:
 ```
@@ -165,6 +175,10 @@ MAILCHIMP_LIST_ID=your_list_id
 MAILCHIMP_SERVER_PREFIX=your_server_prefix
 NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your_site_key
 RECAPTCHA_SECRET_KEY=your_secret_key
+
+# Optional: Redis for rate limiting
+UPSTASH_REDIS_REST_URL=your_redis_url
+UPSTASH_REDIS_REST_TOKEN=your_redis_token
 ```
 
 ## License
