@@ -14,6 +14,7 @@ export default function RootedInCulture() {
                 src="/faridat1.png" 
                 alt="Person in yellow apron holding tiger nuts" 
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
                 priority
               />
@@ -35,11 +36,17 @@ export default function RootedInCulture() {
               Our journey began in the fertile soils of Nigeria, where tiger nuts have been cherished for generations.
             </p>
             
-            <Link href="/about" className="inline-flex items-center group">
+            <Link 
+              href="/about" 
+              className="inline-flex items-center group"
+              aria-label="Learn more about our cultural roots and heritage"
+              role="button"
+              tabIndex={0}
+            >
               <span className="font-bold text-[#F0833C] mr-2 group-hover:mr-3 transition-all duration-300">
                 Learn More
               </span>
-              <ArrowRight className="w-4 h-4 text-[#F0833C] group-hover:translate-x-1 transition-transform duration-300" />
+              <ArrowRight className="w-4 h-4 text-[#F0833C] group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true" />
             </Link>
           </div>
         </div>

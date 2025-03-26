@@ -58,6 +58,7 @@ export default function BenefitsSection() {
                 height={48}
                 priority
                 className="hover:scale-110 transition-transform duration-300"
+                style={{ height: '48px', width: '48px', objectFit: 'contain' }}
               />
             </div>
             <h3 className="font-mochiy text-kunaya-green text-xl mb-4">Probiotic Rich</h3>

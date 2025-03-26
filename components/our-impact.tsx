@@ -31,7 +31,7 @@ const ImpactCard = ({ icon, iconAlt, title, description }: ImpactCardProps) => {
   return (
     <div className='bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow duration-300'>
       <div className='flex items-start gap-3 mb-2'>
-        <Image src={icon} alt={iconAlt} width={40} height={40} />
+        <Image src={icon} alt={iconAlt} width={40} height={40} style={{ width: '40px', height: '40px', objectFit: 'contain' }} />
         <h3 className='text-kunaya-green text-xl font-semibold font-mochiy'>
           {title}
         </h3>
@@ -97,6 +97,9 @@ export default function OurImpact() {
             <Link
               href='/impact'
               className='bg-kunaya-orange hover:bg-opacity-90 text-white font-semibold py-3 px-8 rounded-full transition duration-300 shadow-md hover:shadow-lg'
+              aria-label='Learn more about our impact initiatives'
+              role='button'
+              tabIndex={0}
             >
               Learn More
             </Link>

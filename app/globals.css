@@ -1,9 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
 @import url('https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600&display=swap');
 
+/* These are valid Tailwind CSS directives used in Next.js projects */
+/* stylelint-disable-next-line */
 @tailwind base;
+/* stylelint-disable-next-line */
 @tailwind components;
+/* stylelint-disable-next-line */
 @tailwind utilities;
+
+/* Accessibility utilities */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.focus-visible:not(.sr-only) {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
 
 .rotate-315 {
   transform: rotate(-45deg);
@@ -73,11 +101,29 @@
   }
 }
 
+/* stylelint-disable-next-line */
 @layer base {
   * {
+    /* stylelint-disable-next-line */
     @apply border-border;
   }
   body {
+    /* stylelint-disable-next-line */
     @apply bg-background text-foreground;
+  }
+  
+  /* Improve keyboard focus styles for better accessibility */
+  :focus-visible {
+    outline-width: 2px;
+    outline-offset: 2px;
+    outline-color: var(--primary);
+  }
+  
+  /* Ensure interactive elements have proper focus states */
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline-width: 2px;
+    outline-offset: 2px;
+    outline-color: var(--primary);
+    box-shadow: 0 0 0 2px var(--primary), 0 0 0 4px white;
   }
 }

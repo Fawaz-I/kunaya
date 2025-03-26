@@ -63,15 +63,19 @@ export default function Navbar() {
   ]
 
   return (
-    <header className="bg-[#ffffff] py-4 absolute top-0 left-0 right-0 z-50 animate-fade-in-down">
+    <header className="bg-[#ffffff] py-4 absolute top-0 left-0 right-0 z-50 animate-fade-in-down" role="banner">
       <div className="container mx-auto flex items-center justify-between px-4">
         {/* Desktop Navigation */}
         <div className="flex-1 flex justify-start">
-          <nav className="hidden lg:block">
+          <nav className="hidden lg:block" aria-label="Main navigation">
             <ul className="flex space-x-8">
               {navLinks.map((link) => (
                 <li key={link.href} className={`animate-fade-in-down [animation-delay:${link.delay}]`}>
-                  <Link href={link.href} className="text-[#374151] hover:text-kunaya-green transition-colors duration-300 hover:scale-110 inline-block">
+                  <Link 
+                    href={link.href} 
+                    className="text-[#374151] hover:text-kunaya-green transition-colors duration-300 hover:scale-110 inline-block focus:outline-none focus:ring-2 focus:ring-kunaya-green focus:ring-offset-2 rounded-md px-2 py-1"
+                    aria-current={link.href === '/' ? 'page' : undefined}
+                  >
                     {link.label}
                   </Link>
                 </li>
@@ -81,10 +85,11 @@ export default function Navbar() {
 
           {/* Hamburger Button */}
           <button 
-            className="lg:hidden hamburger-button p-2 focus:outline-none" 
+            className="lg:hidden hamburger-button p-2 focus:outline-none focus:ring-2 focus:ring-kunaya-green focus:ring-offset-2 rounded-md" 
             onClick={toggleMenu}
             aria-label="Toggle menu"
             aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
           >
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
@@ -116,11 +121,15 @@ export default function Navbar() {
 
         {/* Logo */}
         <div className="absolute left-1/2 -translate-x-1/2 transform top-6 animate-fade-in">
-          <Link href="/">
+          <Link 
+            href="/" 
+            aria-label="Kunaya Home"
+            className="focus:outline-none focus:ring-2 focus:ring-kunaya-green focus:ring-offset-2 rounded-md inline-block"
+          >
             <div className="h-[130px] w-[130px] hover:scale-110 transition-transform duration-300">
               <Image
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Kunaya-09iw5HZOv8oPkTq7NfgOyT6U8poDG0.png"
-                alt="Kunaya Logo"
+                alt="Kunaya Logo - Tiger Nut Milk Brand"
                 width={130}
                 height={130}
                 className="max-h-[130px] max-w-[130px]"
@@ -132,8 +141,12 @@ export default function Navbar() {
 
         {/* Cart Icon */}
         <div className="flex-1 flex justify-end animate-fade-in-down [animation-delay:600ms]">
-          <Link href="/cart" className="inline-block text-[#1d1d1b] hover:text-kunaya-orange transition-colors duration-300 hover:scale-110 p-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <Link 
+            href="/cart" 
+            className="inline-block text-[#1d1d1b] hover:text-kunaya-orange transition-colors duration-300 hover:scale-110 p-2 focus:outline-none focus:ring-2 focus:ring-kunaya-green focus:ring-offset-2 rounded-md"
+            aria-label="Shopping cart"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M8 22a2 2 0 1 1 0-4 2 2 0 0 1 0 4zM19 22a2 2 0 1 1 0-4 2 2 0 0 1 0 4zM21 6H7.8l-.4-2H3v2h3.18L8.6 18H19v-2h-9l-.4-2H19l2-8z" />
             </svg>
           </Link>
@@ -142,16 +155,23 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-white z-50 pt-24 mobile-menu lg:hidden overflow-y-auto">
+        <div 
+          className="fixed inset-0 bg-white z-50 pt-24 mobile-menu lg:hidden overflow-y-auto"
+          id="mobile-menu"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile navigation menu"
+        >
           <div className="container mx-auto px-4">
-            <nav className="mt-8">
+            <nav className="mt-8" aria-label="Mobile navigation">
               <ul className="flex flex-col space-y-6">
                 {navLinks.map((link) => (
                   <li key={link.href} className="border-b border-gray-100 pb-4">
                     <Link 
                       href={link.href} 
-                      className="text-xl font-medium text-[#374151] hover:text-kunaya-green transition-colors duration-300 block"
+                      className="text-xl font-medium text-[#374151] hover:text-kunaya-green transition-colors duration-300 block focus:outline-none focus:ring-2 focus:ring-kunaya-green focus:ring-offset-2 rounded-md p-2"
                       onClick={() => setIsMenuOpen(false)}
+                      aria-current={link.href === '/' ? 'page' : undefined}
                     >
                       {link.label}
                     </Link>
@@ -160,11 +180,12 @@ export default function Navbar() {
                 <li className="border-b border-gray-100 pb-4">
                   <Link 
                     href="/cart" 
-                    className="text-xl font-medium text-[#374151] hover:text-kunaya-green transition-colors duration-300 flex items-center"
+                    className="text-xl font-medium text-[#374151] hover:text-kunaya-green transition-colors duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-kunaya-green focus:ring-offset-2 rounded-md p-2"
                     onClick={() => setIsMenuOpen(false)}
+                    aria-label="Shopping cart"
                   >
                     <span className="mr-2">Cart</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                       <path d="M8 22a2 2 0 1 1 0-4 2 2 0 0 1 0 4zM19 22a2 2 0 1 1 0-4 2 2 0 0 1 0 4zM21 6H7.8l-.4-2H3v2h3.18L8.6 18H19v-2h-9l-.4-2H19l2-8z" />
                     </svg>
                   </Link>

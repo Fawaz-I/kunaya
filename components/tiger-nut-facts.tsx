@@ -14,6 +14,7 @@ const TigerNutFacts = () => {
             src="/tigernutsnobg.png"
             alt="Tiger nuts"
             fill
+            sizes="(max-width: 768px) 100vw, 80vw"
             className="object-contain scale-125 hover:scale-110 transition-transform duration-500"
             priority
           />
@@ -40,8 +41,8 @@ const TigerNutFacts = () => {
                   src="/tigernutsnobg.png"
                   alt="Tiger nuts"
                   fill
-                  className="object-contain scale-140 hover:scale-150 transition-transform duration-700"
                   sizes="(max-width: 1024px) 60vw, 750px"
+                  className="object-contain scale-140 hover:scale-150 transition-transform duration-700"
                   quality={100}
                   priority
                 />

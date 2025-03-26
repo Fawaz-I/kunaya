@@ -6,11 +6,13 @@ import ReCAPTCHA from 'react-google-recaptcha';
 interface NewsletterSignupProps {
   className?: string;
   variant?: 'default' | 'inline';
+  'aria-labelledby'?: string;
 }
 
 export default function NewsletterSignup({ 
   className = '', 
-  variant = 'default'
+  variant = 'default',
+  'aria-labelledby': ariaLabelledby
 }: NewsletterSignupProps) {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -60,36 +62,57 @@ export default function NewsletterSignup({
   };
 
   if (variant === 'inline') {
+    const formId = ariaLabelledby ? `${ariaLabelledby}-form` : 'inline-newsletter-form';
+    const emailId = ariaLabelledby ? `${ariaLabelledby}-email` : 'inline-newsletter-email';
+    
     return (
       <div className={`${className} animate-fade-in-up`}>
         {/* Invisible reCAPTCHA */}
-        <ReCAPTCHA
-          ref={recaptchaRef}
-          size="invisible"
-          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
-        />
-        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+        <div className="recaptcha-container" style={{ position: 'fixed', bottom: '0', right: '0', zIndex: '9999' }}>
+          <ReCAPTCHA
+            ref={recaptchaRef}
+            size="invisible"
+            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
+          />
+        </div>
+        <form 
+          onSubmit={handleSubmit} 
+          className="flex flex-col sm:flex-row gap-3"
+          id={formId}
+          aria-labelledby={ariaLabelledby}
+        >
           <div className="flex-grow">
+            <label htmlFor={emailId} className="sr-only">Email address</label>
             <input
+              id={emailId}
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Your email address"
               className="w-full px-4 py-3 border border-gray-300 rounded-full bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-kunaya-green transition-all"
               disabled={status === 'loading'}
+              required
+              aria-required="true"
+              aria-invalid={status === 'error'}
+              aria-describedby={status !== 'idle' ? `${formId}-feedback` : undefined}
             />
           </div>
           <button
             type="submit"
             disabled={status === 'loading'}
-            className="bg-kunaya-orange hover:bg-[#e67a38] text-white font-mochiy px-6 py-3 rounded-full transition-colors disabled:opacity-70"
+            className="bg-kunaya-orange hover:bg-[#e67a38] text-white font-mochiy px-6 py-3 rounded-full transition-colors disabled:opacity-70 focus:outline-none focus:ring-2 focus:ring-kunaya-orange focus:ring-offset-2"
+            aria-busy={status === 'loading'}
           >
             {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
           </button>
         </form>
         
         {status !== 'idle' && (
-          <p className={`mt-3 text-sm ${status === 'error' ? 'text-red-500' : 'text-kunaya-green'} animate-fade-in`}>
+          <p 
+            className={`mt-3 text-sm ${status === 'error' ? 'text-red-500' : 'text-kunaya-green'} animate-fade-in`}
+            id={`${formId}-feedback`}
+            role={status === 'error' ? 'alert' : 'status'}
+          >
             {message}
           </p>
         )}
@@ -97,42 +120,64 @@ export default function NewsletterSignup({
     );
   }
 
+  const formId = 'default-newsletter-form';
+  const emailId = 'default-newsletter-email';
+  const titleId = 'newsletter-title';
+  
   return (
     <div className={`bg-[#F5F7FA] p-8 rounded-2xl shadow-sm ${className} animate-fade-in-up`}>
-      <h3 className="font-mochiy text-kunaya-green text-2xl mb-4">Join Our Newsletter</h3>
+      <h3 className="font-mochiy text-kunaya-green text-2xl mb-4" id={titleId}>Join Our Newsletter</h3>
       <p className="text-gray-600 mb-6">
         Stay updated with our latest products, promotions, and tiger nut facts.
       </p>
       
       {/* Invisible reCAPTCHA */}
-      <ReCAPTCHA
-        ref={recaptchaRef}
-        size="invisible"
-        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
-      />
+      <div className="recaptcha-container" style={{ position: 'fixed', bottom: '0', right: '0', zIndex: '9999' }}>
+        <ReCAPTCHA
+          ref={recaptchaRef}
+          size="invisible"
+          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
+        />
+      </div>
       
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form 
+        onSubmit={handleSubmit} 
+        className="space-y-4"
+        id={formId}
+        aria-labelledby={titleId}
+      >
         <div>
+          <label htmlFor={emailId} className="sr-only">Email address</label>
           <input
+            id={emailId}
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Your email address"
             className="w-full px-4 py-3 border border-gray-300 rounded-full bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-kunaya-green transition-all"
             disabled={status === 'loading'}
+            required
+            aria-required="true"
+            aria-invalid={status === 'error'}
+            aria-describedby={status !== 'idle' ? `${formId}-feedback` : undefined}
           />
         </div>
         <button
           type="submit"
           disabled={status === 'loading'}
-          className="w-full bg-kunaya-orange hover:bg-[#e67a38] text-white font-mochiy py-3 px-6 rounded-full transition-colors disabled:opacity-70"
+          className="w-full bg-kunaya-orange hover:bg-[#e67a38] text-white font-mochiy py-3 px-6 rounded-full transition-colors disabled:opacity-70 focus:outline-none focus:ring-2 focus:ring-kunaya-orange focus:ring-offset-2"
+          aria-busy={status === 'loading'}
         >
           {status === 'loading' ? 'Subscribing...' : 'Subscribe Now'}
         </button>
       </form>
       
       {status !== 'idle' && (
-        <p className={`mt-4 ${status === 'error' ? 'text-red-500' : 'text-kunaya-green'} animate-fade-in`}>
+        <p 
+          className={`mt-4 ${status === 'error' ? 'text-red-500' : 'text-kunaya-green'} animate-fade-in`}
+          id={`${formId}-feedback`}
+          role={status === 'error' ? 'alert' : 'status'}
+        >
           {message}
         </p>
       )}

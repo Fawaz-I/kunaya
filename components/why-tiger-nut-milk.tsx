@@ -54,6 +54,7 @@ const WhyTigerNutMilk = () => {
                   width={180}
                   height={180}
                   className="object-contain"
+                  style={{ width: '180px', height: '180px', objectFit: 'contain' }}
                 />
               </div>
               <p className="text-lg font-clash text-kunaya-green font-medium mt-3">
