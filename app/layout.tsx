@@ -7,7 +7,6 @@ import { AccessibilityProvider } from "@/components/accessibility-provider"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import Link from "next/link"
 
 // Optimize font loading
 const inter = Inter({ 

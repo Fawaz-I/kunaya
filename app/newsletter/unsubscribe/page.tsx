@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import ReCAPTCHA from 'react-google-recaptcha';
@@ -15,7 +15,7 @@ function Background() {
   );
 }
 
-export default function UnsubscribePage() {
+function UnsubscribeContent() {
   const searchParams = useSearchParams();
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -196,5 +196,35 @@ export default function UnsubscribePage() {
         </div>
       </div>
     </main>
+  );
+}
+
+// Loading fallback component
+function UnsubscribeLoading() {
+  return (
+    <main className="min-h-screen pt-24 pb-16 text-white relative">
+      <Background />
+      <div className="container mx-auto px-4 pt-16 text-center">
+        <div className="max-w-lg mx-auto">
+          <div className="animate-pulse">
+            <div className="h-10 bg-kunaya-green/20 rounded w-3/4 mx-auto mb-8"></div>
+            <div className="bg-[#143620]/80 backdrop-blur-md p-8 rounded-2xl shadow-xl border border-kunaya-green/20">
+              <div className="h-6 bg-white/10 rounded w-1/2 mb-6"></div>
+              <div className="h-12 bg-white/10 rounded-full mb-4"></div>
+              <div className="h-12 bg-kunaya-orange/50 rounded-full"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
+
+// Export the page with Suspense boundary
+export default function UnsubscribePage() {
+  return (
+    <Suspense fallback={<UnsubscribeLoading />}>
+      <UnsubscribeContent />
+    </Suspense>
   );
 }
